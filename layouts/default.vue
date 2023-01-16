@@ -7,7 +7,7 @@
           <v-col class="d-inline-flex" cols="12" xl="6" lg="8" md="10">
             <v-btn v-for="(item, i) in menuItems" class="d-none d-sm-flex" plain :to="item.to" :key="i">
               <v-icon>{{item.icon}}</v-icon>
-              {{item.text}}
+              {{item.title}}
             </v-btn>
             <v-spacer></v-spacer>
             <v-menu offset-y v-if="admin">
@@ -58,6 +58,11 @@ export default {
           icon: 'mdi-heart',
           title: 'Favorites',
           to: '/favorites',
+        },
+        {
+          icon : 'mdi-heart',
+          title: 'Championships',
+          to: '/championships'
         },
         {
           icon: 'mdi-compass',

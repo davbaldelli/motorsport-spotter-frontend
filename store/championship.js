@@ -12,7 +12,8 @@ export const state = () => initialState
 export const getters = {
   loadingChampionships : state => state.championships.fetching || state.championships.notInitialized,
   championships : state => state.championships.items,
-  championship : state => (id) => state.championships.items.find(champ => champ.id === parseInt(id))
+  championship : state => (id) => state.championships.items.find(champ => champ.id === parseInt(id)),
+  championshipByUnique : state => (name, year) => state.championships.items.find(champ => champ.year === parseInt(year) && champ.name === name)
 }
 
 export const mutations = {

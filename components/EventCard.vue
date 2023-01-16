@@ -1,24 +1,24 @@
 <template>
-<v-card>
-  <v-row no-gutters>
-    <v-col cols="3">
-      <v-img :src="event.image" class="rounded" height="90"/>
-    </v-col>
-    <v-col cols="9">
-      <v-row>
-
-      </v-row>
-      <v-row>
+  <v-card>
+    <v-row no-gutters>
+      <v-col cols="3">
+        <v-img :src="event.image" class="rounded" height="150"/>
+      </v-col>
+      <v-col cols="9" class="d-flex flex-column">
         <v-card-title>
-          {{event.name}}
+          {{ event.name }}
         </v-card-title>
-      </v-row>
-      <v-row>
-
-      </v-row>
-    </v-col>
-  </v-row>
-</v-card>
+        <v-card-subtitle>
+        </v-card-subtitle>
+        <v-card-text>
+        </v-card-text>
+        <v-card-actions class="mt-auto px-4 pb-4 pt-0">
+          <v-spacer/>
+          <v-btn :to="`/admin/edit/event/${this.event.id}`" color="orange">Edit</v-btn>
+        </v-card-actions>
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>

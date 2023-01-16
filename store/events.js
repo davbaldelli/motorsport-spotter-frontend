@@ -9,7 +9,7 @@ export const state = () => initialState
 export const getters = {
   loadingEvents: state => state.events.fetching || state.events.notInitialized,
   events : state => state.events.items,
-  event :state => (id) => state.events.find(event => event.id === parseInt(id))
+  event :state => (id) => state.events.items.find(event => event.id === parseInt(id))
 }
 
 export const mutations = {
