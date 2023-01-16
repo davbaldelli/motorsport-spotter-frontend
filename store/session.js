@@ -9,7 +9,7 @@ export const state = () => initialState
 export const getters = {
   loadingSessions : state => state.sessions.fetching || state.sessions.notInitialized,
   sessions : state => state.sessions.items,
-  session : state => (id) => state.session.items.find(session => session.id === parseInt(id))
+  session : state => (id) => state.sessions.items.find(session => session.id === parseInt(id))
 }
 
 export const mutations = {

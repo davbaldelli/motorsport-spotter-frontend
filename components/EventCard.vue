@@ -6,7 +6,7 @@
       </v-col>
       <v-col cols="9" class="d-flex flex-column">
         <v-card-title>
-          {{ event.name }}
+          <nuxt-link :to="`${event.name}`">{{ event.name }}</nuxt-link>
         </v-card-title>
         <v-card-subtitle>
           @ {{event.track.name}}

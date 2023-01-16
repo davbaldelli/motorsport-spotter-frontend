@@ -9,7 +9,11 @@ export const state = () => initialState
 export const getters = {
   loadingEvents: state => state.events.fetching || state.events.notInitialized,
   events : state => state.events.items,
-  event :state => (id) => state.events.items.find(event => event.id === parseInt(id))
+  event :state => (id) => state.events.items.find(event => event.id === parseInt(id)),
+  eventByUnique : state => (name,championship,year) => state.events.items.find(e =>
+    e.name === name && e.championship.name === championship && e.championship.year === parseInt(year)),
+  championshipEvents : state => (championship, year) => state.events.items.filter(event =>
+    event.championship.name === championship && event.championship.year === parseInt(year))
 }
 
 export const mutations = {

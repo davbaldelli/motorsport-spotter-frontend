@@ -4,7 +4,7 @@
     <v-col cols="12" xl="6" lg="8" md="10">
       <v-row>
         <v-col>
-          <h1>{{`${this.name} ${this.year}`}}</h1>
+          <h1>{{`${name} ${year}`}}</h1>
         </v-col>
       </v-row>
       <v-row>
@@ -40,10 +40,7 @@ export default {
       return this.$store.getters["championship/championshipByUnique"](this.name, this.year)
     },
     events(){
-      if(this.championship){
-        return this.$store.getters["events/events"].filter(event => event.championshipId === this.championship.id)
-      }
-      else return []
+      return this.$store.getters["events/championshipEvents"](this.name, this.year)
     },
   },
   mounted() {
