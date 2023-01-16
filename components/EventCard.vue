@@ -9,6 +9,7 @@
           {{ event.name }}
         </v-card-title>
         <v-card-subtitle>
+          @ {{event.track.name}}
         </v-card-subtitle>
         <v-card-text>
         </v-card-text>

@@ -17,7 +17,7 @@ export const getters = {
 
 export const mutations = {
   tracksFetching (state) {
-    state.tracks.fetching = {
+    state.tracks = {
       items : state.tracks.items,
       fetching : true
     }

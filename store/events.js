@@ -14,7 +14,7 @@ export const getters = {
 
 export const mutations = {
   eventsFetching (state) {
-    state.events.fetching = {
+    state.events = {
       items : state.events.items,
       fetching : true
     }
