@@ -15,6 +15,11 @@
 <script>
 export default {
   name: "AddChampionship",
+  head(){
+    return{
+      title : "Add Championship"
+    }
+  },
   data() {
     return {
       showMsg: false,

@@ -18,7 +18,12 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'Home',
+  head(){
+    return {
+      title : "Motorsport Spotter"
+    }
+  },
   computed : {
     events() {
       return  this.$store.getters["events/events"]

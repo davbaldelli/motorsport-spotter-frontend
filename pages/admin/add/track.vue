@@ -15,6 +15,11 @@
 <script>
 export default {
   name: "AddTrack",
+  head(){
+    return{
+      title : "Add Track"
+    }
+  },
   data() {
     return {
       showMsg: false,

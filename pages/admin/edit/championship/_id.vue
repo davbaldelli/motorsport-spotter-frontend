@@ -15,6 +15,11 @@
 <script>
 export default {
   name: "EditChampionship",
+  head(){
+    return{
+      title : "Edit Championship"
+    }
+  },
   asyncData({params}){
     return {
       id : params.id

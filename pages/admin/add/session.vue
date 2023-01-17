@@ -15,6 +15,11 @@
 <script>
 export default {
   name: "AddSession",
+  head(){
+    return{
+      title : "Add Session"
+    }
+  },
   data() {
     return {
       showMsg: false,

@@ -26,6 +26,11 @@ export default {
       name : params.event,
     }
   },
+  head(){
+    return {
+      title : this.name
+    }
+  },
   computed : {
     event() {
       return this.$store.getters["events/eventByUnique"](this.name, this.championship, this.year)

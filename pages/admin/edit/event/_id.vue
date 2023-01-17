@@ -15,6 +15,11 @@
 <script>
 export default {
   name: "EditEvent",
+  head(){
+    return{
+      title : "Edit Event"
+    }
+  },
   asyncData({params}){
     return {
       id : params.id

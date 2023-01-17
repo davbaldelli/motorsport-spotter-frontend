@@ -55,19 +55,14 @@ export default {
           to: '/',
         },
         {
-          icon: 'mdi-heart',
-          title: 'Favorites',
-          to: '/favorites',
-        },
-        {
           icon : 'mdi-heart',
           title: 'Championships',
           to: '/championships'
         },
         {
           icon: 'mdi-compass',
-          title: 'Discover',
-          to: '/discover',
+          title: 'Tracks',
+          to: '/tracks',
         }
       ],
       adminOptions : [

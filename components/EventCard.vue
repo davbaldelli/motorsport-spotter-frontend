@@ -6,7 +6,9 @@
       </v-col>
       <v-col cols="9" class="d-flex flex-column">
         <v-card-title>
-          <nuxt-link :to="`${event.name}`">{{ event.name }}</nuxt-link>
+          <nuxt-link :to="`/championships/${event.championship.name}/${event.championship.year}/${event.name}`">
+            {{ event.name }}
+          </nuxt-link>
         </v-card-title>
         <v-card-subtitle>
           @ {{event.track.name}}
@@ -15,7 +17,7 @@
         </v-card-text>
         <v-card-actions class="mt-auto px-4 pb-4 pt-0">
           <v-spacer/>
-          <v-btn :to="`/admin/edit/event/${this.event.id}`" color="orange">Edit</v-btn>
+          <v-btn :to="`/admin/edit/event/${event.id}`" color="orange">Edit</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>

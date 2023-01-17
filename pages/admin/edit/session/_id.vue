@@ -15,6 +15,11 @@
 <script>
 export default {
   name: "EditSession",
+  head(){
+    return{
+      title : "Edit Session"
+    }
+  },
   asyncData({params}){
     return {
       id : params.id

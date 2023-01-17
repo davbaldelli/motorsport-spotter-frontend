@@ -15,6 +15,11 @@
 <script>
 export default {
   name: "AddEvent",
+  head(){
+    return{
+      title : "Add Event"
+    }
+  },
   data() {
     return {
       showMsg: false,

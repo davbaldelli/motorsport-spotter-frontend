@@ -32,7 +32,7 @@ export default {
   },
   head() {
     return {
-      title : this.name
+      title : `${this.name} ${this.year}`
     }
   },
   computed : {
