@@ -1,6 +1,6 @@
 <template>
 <div>
-  <lazy-track-form v-if="session" :initial-value="session" @submit="onSubmit"/>
+  <lazy-track-form v-if="session" :initial-value="initialValue" @submit="onSubmit"/>
   <v-snackbar v-model="showMsg">
     {{ message }}
     <template #action="{ attrs }">
@@ -15,11 +15,6 @@
 <script>
 export default {
   name: "TrackEdit",
-  head(){
-    return{
-      title : "Edit Track"
-    }
-  },
   asyncData({params}){
     return {
       id : params.id
@@ -31,9 +26,17 @@ export default {
       message: '',
     }
   },
+  head(){
+    return{
+      title : "Edit Track"
+    }
+  },
   computed : {
+    initialValue(){
+      return this.session ? {...this.session} : null
+    },
     session() {
-      return {...this.$store.getters["tracks/track"](this.id)}
+      return this.$store.getters["tracks/track"](this.id)
     }
   },
   mounted () {

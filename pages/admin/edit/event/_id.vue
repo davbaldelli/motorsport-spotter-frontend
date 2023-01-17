@@ -1,6 +1,6 @@
 <template>
   <div>
-    <lazy-event-form v-if="event" :initial-value="event" @submit="onSubmit"/>
+    <lazy-event-form v-if="event" :initial-value="initialValue" @submit="onSubmit"/>
     <v-snackbar v-model="showMsg">
       {{ message }}
       <template #action="{ attrs }">
@@ -15,11 +15,6 @@
 <script>
 export default {
   name: "EditEvent",
-  head(){
-    return{
-      title : "Edit Event"
-    }
-  },
   asyncData({params}){
     return {
       id : params.id
@@ -31,9 +26,17 @@ export default {
       message: '',
     }
   },
+  head(){
+    return{
+      title : "Edit Event"
+    }
+  },
   computed : {
+    initialValue(){
+      return this.event ? {...this.event} : null
+    },
     event() {
-      return {...this.$store.getters["events/event"](this.id)}
+      return this.$store.getters["events/event"](this.id)
     }
   },
   mounted () {

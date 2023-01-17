@@ -8,14 +8,14 @@ export const tracksService = {
 }
 
 function getAll(){
-  return axios.get(`${API_URL}/api/tracks`, {})
+  return axios.get(`${API_URL}/tracks`, {})
     .then(res => res.data)
     .catch(error => Promise.reject(error.response))
 }
 
 function pushTrack(track){
   return axios
-    .post(`${API_URL}/api/tracks/add`, track, {})
+    .post(`${API_URL}/tracks/add`, track, {})
     .then(res => res.data)
     .catch(error => {
       return Promise.reject(error.response)
@@ -24,7 +24,7 @@ function pushTrack(track){
 
 function updateTrack(track){
   return axios
-    .post(`${API_URL}/api/tracks/update`, track, {})
+    .post(`${API_URL}/tracks/update`, track, {})
     .then(res => res.data)
     .catch(error => {
       return Promise.reject(error.response)

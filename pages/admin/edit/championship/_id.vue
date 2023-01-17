@@ -1,6 +1,6 @@
 <template>
   <div>
-    <lazy-championship-form v-if="championship" :initial-value="championship" @submit="onSubmit"/>
+    <lazy-championship-form v-if="championship" :initial-value="initialValue" @submit="onSubmit"/>
     <v-snackbar v-model="showMsg">
       {{ message }}
       <template #action="{ attrs }">
@@ -15,11 +15,6 @@
 <script>
 export default {
   name: "EditChampionship",
-  head(){
-    return{
-      title : "Edit Championship"
-    }
-  },
   asyncData({params}){
     return {
       id : params.id
@@ -31,9 +26,17 @@ export default {
       message: '',
     }
   },
+  head(){
+    return{
+      title : "Edit Championship"
+    }
+  },
   computed : {
+    initialValue(){
+      return this.championship ? {...this.championship} : null
+    },
     championship() {
-      return {...this.$store.getters["championship/championship"](this.id)}
+      return this.$store.getters["championship/championship"](this.id)
     }
   },
   mounted () {

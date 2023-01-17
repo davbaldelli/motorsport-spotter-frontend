@@ -8,14 +8,14 @@ export const championshipsService = {
 }
 
 function getAll(){
-  return axios.get(`${API_URL}/api/championships`, {})
+  return axios.get(`${API_URL}/championships`, {})
     .then(response => response.data)
     .catch(error => Promise.reject(error.response ? error.response : error))
 }
 
 function pushChampionship(championship){
   return axios
-    .post(`${API_URL}/api/championships/add`, championship, {})
+    .post(`${API_URL}/championships/add`, championship, {})
     .then(res => res.data)
     .catch(error => {
       return Promise.reject(error.response)
@@ -24,7 +24,7 @@ function pushChampionship(championship){
 
 function updateChampionship(championship){
   return axios
-    .post(`${API_URL}/api/championships/update`, championship, {})
+    .post(`${API_URL}/championships/update`, championship, {})
     .then(res => res.data)
     .catch(error => {
       return Promise.reject(error.response)

@@ -74,7 +74,7 @@
       </v-form>
     </v-col>
   </v-row>
-  <v-dialog v-model="confirm" max-width="290" v-on:keydown.enter="confirmed">
+  <v-dialog v-model="confirm" max-width="290" @keydown.enter="confirmed">
     <v-card>
       <v-card-title class="text-h5">
         Are you sure you want to submit?
