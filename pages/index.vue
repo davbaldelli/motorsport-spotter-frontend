@@ -21,7 +21,7 @@ export default {
   name: 'Home',
   head(){
     return {
-      title : "Motorsport Spotter"
+      title : "Home"
     }
   },
   computed : {

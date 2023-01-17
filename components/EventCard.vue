@@ -10,10 +10,11 @@
             {{ event.name }}
           </nuxt-link>
         </v-card-title>
-        <v-card-subtitle>
+        <v-card-subtitle class="pb-1">
           @ {{event.track.name}}
         </v-card-subtitle>
-        <v-card-text>
+        <v-card-text class="pb-1">
+          {{periodLabel}}
         </v-card-text>
         <v-card-actions class="mt-auto px-4 pb-4 pt-0">
           <v-spacer/>
@@ -27,7 +28,16 @@
 <script>
 export default {
   name: "EventCard",
-  props: ["event"]
+  props: ["event"],
+  computed : {
+    periodLabel(){
+      const start = new Date(this.event.startDate)
+      const end = new Date(this.event.endDate)
+      const endMonth = end.toLocaleString('default', { month: 'short' });
+      const startMonth = start.toLocaleString('default', { month: 'short' });
+      return `${start.getDate()}${startMonth !== endMonth ? " "+startMonth : ""}-${end.getDate()} ${endMonth}`
+    }
+  }
 }
 </script>
 
