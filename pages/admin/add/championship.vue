@@ -36,7 +36,7 @@ export default {
   },
  methods : {
    onSubmit (championship) {
-     this.$store.dispatch('championship/pushChampionship', championship)
+     this.$store.dispatch('championships/pushChampionship', championship)
        .then(() => {
          this.message = 'Championship added successfully'
          this.showMsg = true

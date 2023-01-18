@@ -4,11 +4,11 @@
       <v-col cols="12" xl="6" lg="8" md="10">
         <v-row>
           <v-col>
-            <h1>Incoming Events</h1>
+            <h1>This Week Events</h1>
           </v-col>
         </v-row>
         <v-row>
-          <v-col v-for="(event, i) in events" :key="i" cols="12" class="pa-2">
+          <v-col v-for="(event, i) in events" :key="i" cols="12">
             <event-card :event="event"/>
           </v-col>
         </v-row>
@@ -26,7 +26,7 @@ export default {
   },
   computed : {
     events() {
-      return  this.$store.getters["events/events"]
+      return  this.$store.getters["events/thisWeekEvents"]
     }
   },
   mounted() {
@@ -34,8 +34,10 @@ export default {
   },
   methods : {
     initialize(){
-      this.$store.dispatch('events/fetchIncomingEvents')
+      this.$store.dispatch('events/fetchAllEvents')
     }
   }
 }
 </script>
+
+

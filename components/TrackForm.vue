@@ -13,8 +13,18 @@
             <v-col>
               <v-text-field v-model="form.locationName" :rules="rules.required" label="Location" required/>
             </v-col>
-            <v-col>
-              <v-text-field v-model="form.nationCode" :rules="rules.required" label="Nation Code" required/>
+            <v-col  v-if="existingNation">
+              <v-autocomplete v-model="form.nation" :items="nations" :rules="rules.required" item-text="name"
+                             return-object label="Nation" required/>
+            </v-col>
+            <v-col v-if="!existingNation">
+              <v-text-field v-model="form.nation.name" :rules="rules.required" label="Nation Name"/>
+            </v-col>
+            <v-col v-if="!existingNation">
+              <v-text-field v-model="form.nation.code" :rules="rules.required" label="Nation Code"/>
+            </v-col>
+            <v-col cols="2">
+              <v-checkbox v-model="existingNation" label="Existing" @change="clearNation()"></v-checkbox>
             </v-col>
           </v-row>
           <v-row>
@@ -58,10 +68,19 @@ export default {
       form: this.initialValue,
       valid: true,
       confirm: false,
+      existingNation : true,
       rules: {
         required: [v => !!v || 'this entry is required']
       }
     }
+  },
+  computed : {
+    nations(){
+      return this.$store.getters["nations/nations"]
+    }
+  },
+  mounted() {
+    this.$store.dispatch('nations/fetchAllNations')
   },
   methods: {
     confirmed() {
@@ -72,6 +91,12 @@ export default {
       this.$refs.form.validate()
       if (this.valid) {
         this.confirm = true
+      }
+    },
+    clearNation(){
+      this.form.nation = {
+        name : null,
+        code : null
       }
     },
   }

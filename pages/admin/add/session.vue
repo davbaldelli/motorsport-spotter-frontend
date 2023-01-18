@@ -35,7 +35,7 @@ export default {
   },
   methods : {
     onSubmit (session) {
-      this.$store.dispatch('session/pushSession', session)
+      this.$store.dispatch('sessions/pushSession', session)
         .then(() => {
           this.message = 'Session added successfully'
           this.showMsg = true

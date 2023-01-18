@@ -1,3 +1,4 @@
+import moment from "moment";
 import {eventsService} from "@/_services/events";
 
 const initialState = {
@@ -9,6 +10,8 @@ export const state = () => initialState
 export const getters = {
   loadingEvents: state => state.events.fetching || state.events.notInitialized,
   events : state => state.events.items,
+  incomingEvents : state => state.events.items.filter(isIncoming),
+  thisWeekEvents : state => state.events.items.filter(isInThisWeek),
   event :state => (id) => state.events.items.find(event => event.id === parseInt(id)),
   eventByUnique : state => (name,championship,year) => state.events.items.find(e =>
     e.name === name && e.championship.name === championship && e.championship.year === parseInt(year)),
@@ -110,3 +113,24 @@ export const actions = {
   },
 }
 
+function isIncoming(event){
+  const today = moment().format("YYYY-MM-DD")
+  // const nextWeek = today.addDays(7)
+  console.log(today)
+  return event.endDate >= today
+}
+
+function isInThisWeek(event){
+  const today = moment()
+  const nextWeek = moment().add(7, 'days')
+  const startDate = moment(event.startDate)
+  const endDate = moment(event.endDate)
+  return startDate.isBetween(today, nextWeek,"days", "[]") || endDate.isBetween(today, nextWeek, "days", "[]")
+}
+
+// eslint-disable-next-line no-extend-native
+Date.prototype.addDays = function(days) {
+  const date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+}

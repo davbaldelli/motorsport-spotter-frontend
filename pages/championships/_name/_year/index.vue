@@ -9,11 +9,11 @@
       </v-row>
       <v-row>
         <v-col>
-          <v-btn v-if="championship" color="orange" block :to="`/admin/edit/championship/${championship.id}`">Edit</v-btn>
+          <v-btn v-if="championship && admin" color="orange" block :to="`/admin/edit/championship/${championship.id}`">Edit</v-btn>
         </v-col>
       </v-row>
       <v-row>
-        <v-col v-for="(event, i) in events" :key="i" cols="12" class="pa-2">
+        <v-col v-for="(event, i) in events" :key="i" cols="12">
           <event-card :event="event"/>
         </v-col>
       </v-row>
@@ -37,14 +37,17 @@ export default {
   },
   computed : {
     championship() {
-      return this.$store.getters["championship/championshipByUnique"](this.name, this.year)
+      return this.$store.getters["championships/championshipByUnique"](this.name, this.year)
     },
     events(){
       return this.$store.getters["events/championshipEvents"](this.name, this.year)
     },
+    admin(){
+      return true
+    },
   },
   mounted() {
-    this.$store.dispatch('championship/fetchAllChampionships')
+    this.$store.dispatch('championships/fetchAllChampionships')
     this.$store.dispatch('events/fetchAllEvents')
   }
 }

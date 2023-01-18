@@ -36,15 +36,15 @@ export default {
       return this.session ? {...this.session} : null
     },
     session() {
-      return this.$store.getters["session/session"](this.id)
+      return this.$store.getters["sessions/session"](this.id)
     }
   },
   mounted () {
-    this.$store.dispatch('session/fetchSessions')
+    this.$store.dispatch('sessions/fetchSessions')
   },
   methods : {
     onSubmit(session) {
-      this.$store.dispatch('session/updateSession', session)
+      this.$store.dispatch('sessions/updateSession', session)
         .then(() => {
           this.message = 'Session updated successfully'
           this.showMsg = true

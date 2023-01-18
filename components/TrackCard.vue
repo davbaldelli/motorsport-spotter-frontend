@@ -10,7 +10,7 @@
         </v-card-title>
         <v-card-actions class="mt-auto px-4 pt-0">
           <v-spacer/>
-          <v-btn :to="`/admin/edit/track/${track.id}`" color="orange">Edit</v-btn>
+          <v-btn v-if="admin" :to="`/admin/edit/track/${track.id}`" color="orange">Edit</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -20,7 +20,12 @@
 <script>
 export default {
   name: "TrackCard",
-  props: ['track']
+  props: ['track'],
+  computed : {
+    admin(){
+      return true
+    }
+  }
 }
 </script>
 

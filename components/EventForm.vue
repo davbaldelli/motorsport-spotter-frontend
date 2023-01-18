@@ -108,14 +108,14 @@ export default {
   },
   computed : {
     championships(){
-      return this.$store.getters["championship/championships"]
+      return this.$store.getters["championships/championships"]
     },
     tracks(){
       return this.$store.getters["tracks/tracks"]
     }
   },
   mounted() {
-    this.$store.dispatch("championship/fetchAllChampionships")
+    this.$store.dispatch("championships/fetchAllChampionships")
     this.$store.dispatch("tracks/fetchAllTracks")
   },
   methods : {

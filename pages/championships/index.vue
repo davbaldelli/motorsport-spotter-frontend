@@ -26,11 +26,11 @@ export default {
   },
   computed : {
     championships(){
-      return this.$store.getters["championship/championships"]
+      return this.$store.getters["championships/championships"]
     }
   },
   mounted() {
-    this.$store.dispatch('championship/fetchAllChampionships')
+    this.$store.dispatch('championships/fetchAllChampionships')
   }
 }
 </script>

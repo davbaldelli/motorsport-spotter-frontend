@@ -1,13 +1,13 @@
 <template>
   <v-card>
     <v-row no-gutters>
-      <v-col cols="3">
-        <v-img :src="event.image" class="rounded" height="150"/>
+      <v-col cols="12" md="3">
+        <v-img :src="event.image" class="rounded" height="175"/>
       </v-col>
-      <v-col cols="9" class="d-flex flex-column">
+      <v-col cols="12" md="9" class="d-flex flex-column">
         <v-card-title>
           <nuxt-link :to="`/championships/${event.championship.name}/${event.championship.year}/${event.name}`">
-            {{ event.name }}
+            <h3>{{ event.name }}</h3>
           </nuxt-link>
         </v-card-title>
         <v-card-subtitle class="pb-1">
@@ -18,7 +18,7 @@
         </v-card-text>
         <v-card-actions class="mt-auto px-4 pb-4 pt-0">
           <v-spacer/>
-          <v-btn :to="`/admin/edit/event/${event.id}`" color="orange">Edit</v-btn>
+          <v-btn v-if="admin" :to="`/admin/edit/event/${event.id}`" color="orange">Edit</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -36,7 +36,10 @@ export default {
       const endMonth = end.toLocaleString('default', { month: 'short' });
       const startMonth = start.toLocaleString('default', { month: 'short' });
       return `${start.getDate()}${startMonth !== endMonth ? " "+startMonth : ""}-${end.getDate()} ${endMonth}`
-    }
+    },
+    admin(){
+      return true
+    },
   }
 }
 </script>

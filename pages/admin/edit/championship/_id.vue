@@ -36,15 +36,15 @@ export default {
       return this.championship ? {...this.championship} : null
     },
     championship() {
-      return this.$store.getters["championship/championship"](this.id)
+      return this.$store.getters["championships/championship"](this.id)
     }
   },
   mounted () {
-    this.$store.dispatch('championship/fetchAllChampionships')
+    this.$store.dispatch('championships/fetchAllChampionships')
   },
   methods : {
     onSubmit(championship) {
-      this.$store.dispatch('championship/updateChampionship', championship)
+      this.$store.dispatch('championships/updateChampionship', championship)
         .then(() => {
           this.message = 'Championship added successfully'
           this.showMsg = true
