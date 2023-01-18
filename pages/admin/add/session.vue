@@ -3,7 +3,7 @@
     <session-form :initial-value="initialValue" @submit="onSubmit"/>
     <v-snackbar v-model="showMsg">
       {{ message }}
-      <template v-slot:action="{ attrs }">
+      <template #action="{ attrs }">
         <v-btn color="pink" text v-bind="attrs" @click="close">
           Close
         </v-btn>
@@ -41,7 +41,7 @@ export default {
           this.showMsg = true
         })
         .catch(e => {
-          this.message = e
+          this.message = e.data
           this.showMsg = true
         })
     },

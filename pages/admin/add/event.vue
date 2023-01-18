@@ -42,7 +42,7 @@ export default {
           this.showMsg = true
         })
         .catch(e => {
-          this.message = e
+          this.message = e.data
           this.showMsg = true
         })
     },

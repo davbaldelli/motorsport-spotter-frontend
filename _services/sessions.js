@@ -1,5 +1,6 @@
 import axios from "axios";
 import {API_URL} from "@/_services/config";
+import {authHeader} from "@/_services/auth-header";
 
 export const sessionsService = {
   getAll,
@@ -8,14 +9,14 @@ export const sessionsService = {
 }
 
 function getAll(){
-  return axios.get(`${API_URL}/sessions`,{})
+  return axios.get(`${API_URL}/sessions`,{ headers: authHeader() })
     .then(response => response.data)
     .catch((error) => Promise.reject(error.response))
 }
 
 function push(event){
   return axios
-    .post(`${API_URL}/sessions/add`, event, {})
+    .post(`${API_URL}/sessions/add`, event, { headers: authHeader() })
     .then(res => res.data)
     .catch(error => {
       return Promise.reject(error.response)
@@ -24,7 +25,7 @@ function push(event){
 
 function update(event){
   return axios
-    .post(`${API_URL}/sessions/update`, event, {})
+    .post(`${API_URL}/sessions/update`, event, { headers: authHeader() })
     .then(res => res.data)
     .catch(error => {
       return Promise.reject(error.response)

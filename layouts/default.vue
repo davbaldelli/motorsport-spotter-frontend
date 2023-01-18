@@ -10,8 +10,8 @@
               {{item.title}}
             </v-btn>
             <v-spacer></v-spacer>
-            <v-menu offset-y v-if="admin">
-              <template v-slot:activator="{ on, attrs }">
+            <v-menu v-if="admin" offset-y>
+              <template #activator="{ on, attrs }">
                 <v-btn v-if="admin" class="d-none d-sm-flex" plain v-on="on" v-bind="attrs">
                   <v-icon>mdi-user</v-icon>
                   Admin
@@ -25,6 +25,9 @@
                 </v-list-item>
               </v-list>
             </v-menu>
+            <v-btn v-if="admin" class="d-none d-sm-flex" plain @click="logOut">
+              Logout
+            </v-btn>
           </v-col>
           <v-col cols="0" lg="3" md="2"/>
         </v-row>
@@ -47,7 +50,6 @@ export default {
   data() {
     return {
       value : 'recent',
-      admin : true,
       menuItems: [
         {
           icon: 'mdi-home',
@@ -73,5 +75,46 @@ export default {
       ],
     }
   },
+  computed: {
+    admin () {
+      return this.$store.getters['authentication/isAdmin']
+    },
+    alert () {
+      return this.$store.getters['alert/alert']
+    },
+    notCheckedUser() {
+      return this.$store.getters['authentication/notChecked']
+    }
+  },
+  watch: {
+    $route () {
+      // clear alert on location change
+      this.$store.dispatch('alert/clear')
+    },
+    alert: {
+      async handler (value) {
+        if (value.message && value.message.status === 401) {
+          await this.$router.push('/login')
+        }
+      },
+      deep: true
+    },
+  },
+  mounted() {
+    if(this.notCheckedUser){
+      const user = JSON.parse(localStorage.getItem('user'))
+      if(user) {
+        this.$store.dispatch('authentication/setUser', user)
+      }
+    }
+  },
+  methods: {
+    async logOut () {
+      await this.$store.dispatch('authentication/logout').then(() =>
+        this.$store.dispatch('alert/clear')
+      )
+      this.$emit('loggedOut')
+    }
+  }
 }
 </script>
