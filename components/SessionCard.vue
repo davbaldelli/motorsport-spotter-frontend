@@ -5,6 +5,9 @@
       <v-card-title>
         {{session.name}}
       </v-card-title>
+      <v-card-subtitle>
+        {{`${session.date} ${session.time}`}}
+      </v-card-subtitle>
     </v-col>
     <v-col cols="3" class="d-flex flex-column justify-center">
       <v-card-actions v-if="admin" class="px-3">
