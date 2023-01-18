@@ -4,6 +4,11 @@
   <v-col cols="12" xl="6" lg="8" md="10">
     <v-row>
       <v-col>
+        <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <h1>{{name}}</h1>
       </v-col>
     </v-row>
@@ -26,6 +31,26 @@ export default {
       championship : params.name,
       year : params.year,
       name : params.event,
+      breadCrumbs : [
+        {
+          text: 'Championships',
+          disabled : false,
+          exact : true,
+          to: '/championships',
+        },
+        {
+          text: `${params.name} ${params.year}`,
+          disabled : false,
+          exact : true,
+          to: `/championships/${params.name}/${params.year}`,
+        },
+        {
+          text: params.event,
+          disabled : true,
+          exact : true,
+          to: `/championships/${params.name}/${params.year}/${params.event}`,
+        },
+      ],
     }
   },
   head(){

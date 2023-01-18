@@ -14,11 +14,6 @@
 <script>
 export default {
   name: "ChampionshipsHome",
-  data(){
-    return {
-
-    }
-  },
   head(){
     return{
       title : "Championships"
