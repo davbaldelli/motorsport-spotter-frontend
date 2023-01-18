@@ -1,19 +1,13 @@
 <template>
-  <v-card>
-    <v-row no-gutters>
-      <v-col cols="1" class="pa-3">
-        <v-img :src="track.logo" class="circle pa-2" contain height="80" width="80"/>
-      </v-col>
-      <v-col class="d-flex flex-column">
-        <v-card-title>
-          {{track.name}}
-        </v-card-title>
-        <v-card-actions class="mt-auto px-4 pt-0">
-          <v-spacer/>
-          <v-btn v-if="admin" :to="`/admin/edit/track/${track.id}`" color="orange">Edit</v-btn>
-        </v-card-actions>
-      </v-col>
-    </v-row>
+  <v-card :to="`/tracks/${track.name}`">
+    <v-img :src="track.image" height="190" :alt="`${track.name}`">
+      <div class="d-flex justify-center" style="height: 100%">
+        <v-avatar size="80" class="pa-2 mt-auto mb-4 white-background">
+          <v-img :src="track.logo" contain/>
+        </v-avatar>
+      </div>
+    </v-img>
+    <v-card-title class="justify-center"><h3 class="single-line">{{track.name}}</h3></v-card-title>
   </v-card>
 </template>
 
@@ -30,8 +24,15 @@ export default {
 </script>
 
 <style scoped>
-  .circle{
-    border-radius: 50px;
-    background-color: white;
-  }
+.single-line{
+  display: block !important;
+  white-space: nowrap ;
+  word-break: normal;
+  overflow: hidden ;
+  text-overflow: ellipsis;
+}
+.white-background{
+  border-radius: 50px;
+  background-color: white;
+}
 </style>

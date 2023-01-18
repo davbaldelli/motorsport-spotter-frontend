@@ -16,7 +16,8 @@ export const getters = {
   eventByUnique : state => (name,championship,year) => state.events.items.find(e =>
     e.name === name && e.championship.name === championship && e.championship.year === parseInt(year)),
   championshipEvents : state => (championship, year) => state.events.items.filter(event =>
-    event.championship.name === championship && event.championship.year === parseInt(year))
+    event.championship.name === championship && event.championship.year === parseInt(year)),
+  trackEvents : state => (name) => state.events.items.filter(event => event.track.name === name)
 }
 
 export const mutations = {

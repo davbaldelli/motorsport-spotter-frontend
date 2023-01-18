@@ -5,7 +5,7 @@
         <v-row no-gutters>
           <v-col cols="0" xl="3" lg="2" md="1" class="d-none d-md-block"/>
           <v-col class="d-inline-flex" cols="12" xl="6" lg="8" md="10">
-            <v-btn v-for="(item, i) in menuItems" class="d-none d-sm-flex" plain :to="item.to" :key="i">
+            <v-btn v-for="(item, i) in menuItems" class="d-none d-sm-flex pl-0 pr-4" plain :to="item.to" :key="i">
               <v-icon>{{item.icon}}</v-icon>
               {{item.title}}
             </v-btn>
@@ -32,7 +32,32 @@
           <v-col cols="0" lg="3" md="2"/>
         </v-row>
       </v-container>
+      <v-app-bar-nav-icon class="d-sm-none"  aria-label="navigation drawer button" @click.stop="drawer = !drawer" />
     </v-app-bar>
+    <v-navigation-drawer v-model="drawer" disable-resize-watcher app>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+            Navigation
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list nav dense>
+        <v-list-item-group color="primary">
+          <v-list-item v-for="(item, i) in menuItems" :key="i" link :to="item.to">
+            <v-icon>{{item.icon}}</v-icon>
+            <v-list-item-content>
+              <v-list-item-title >{{item.title}}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+      <v-divider></v-divider>
+      <v-list-item v-if="admin" @click="logOut">
+        Logout
+      </v-list-item>
+    </v-navigation-drawer>
     <v-main>
       <v-container fluid>
         <Nuxt />
@@ -50,6 +75,7 @@ export default {
   data() {
     return {
       value : 'recent',
+      drawer: false,
       menuItems: [
         {
           icon: 'mdi-home',
@@ -57,12 +83,12 @@ export default {
           to: '/',
         },
         {
-          icon : 'mdi-heart',
+          icon : 'mdi-calendar',
           title: 'Championships',
           to: '/championships'
         },
         {
-          icon: 'mdi-compass',
+          icon: 'mdi-road-variant',
           title: 'Tracks',
           to: '/tracks',
         }

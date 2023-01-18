@@ -12,7 +12,8 @@ export const state = () => initialState
 export const getters = {
   loadingTracks : state => state.tracks.fetching || state.tracks.notInitialized,
   tracks : state => state.tracks.items,
-  track : state => (id) => state.tracks.items.find(track => track.id === parseInt(id))
+  track : state => (id) => state.tracks.items.find(track => track.id === parseInt(id)),
+  trackByUnique : state => (name) => state.tracks.items.find(t => t.name === name)
 }
 
 export const mutations = {

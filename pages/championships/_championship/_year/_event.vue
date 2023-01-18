@@ -28,7 +28,7 @@ export default {
   name: "EventDetail",
   asyncData({params}){
     return {
-      championship : params.name,
+      championship : params.championship,
       year : params.year,
       name : params.event,
       breadCrumbs : [
@@ -42,13 +42,13 @@ export default {
           text: `${params.name} ${params.year}`,
           disabled : false,
           exact : true,
-          to: `/championships/${params.name}/${params.year}`,
+          to: `/championships/${params.championship}/${params.year}`,
         },
         {
           text: params.event,
           disabled : true,
           exact : true,
-          to: `/championships/${params.name}/${params.year}/${params.event}`,
+          to: `/championships/${params.championship}/${params.year}/${params.event}`,
         },
       ],
     }
