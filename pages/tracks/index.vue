@@ -4,7 +4,7 @@
   <v-col cols="12" xl="6" lg="8" md="10">
     <v-row class="my-3">
       <v-col class="text-center" cols="12">
-        <h1 class="text-h2 mb-3">Tracks</h1>
+        <h1 class="text-h3 text-sm-h2 mb-3">Tracks</h1>
       </v-col>
     </v-row>
     <v-row>
