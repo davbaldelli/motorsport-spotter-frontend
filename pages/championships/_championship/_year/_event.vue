@@ -7,16 +7,18 @@
         <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col>
-        <h1>{{name}}</h1>
-      </v-col>
-    </v-row>
-    <v-row v-if="event">
-      <v-col  v-for="(session, i) in sessions" :key="i" cols="12">
-        <session-card :session="session"/>
-      </v-col>
-    </v-row>
+    <div v-if="event">
+      <v-row>
+        <v-col>
+          <h1>{{name}}</h1>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col  v-for="(session, i) in sessions" :key="i" cols="12">
+          <session-card :session="session"/>
+        </v-col>
+      </v-row>
+    </div>
   </v-col>
 </v-row>
 </template>
@@ -39,7 +41,7 @@ export default {
           to: '/championships',
         },
         {
-          text: `${params.name} ${params.year}`,
+          text: `${params.championship} ${params.year}`,
           disabled : false,
           exact : true,
           to: `/championships/${params.championship}/${params.year}`,

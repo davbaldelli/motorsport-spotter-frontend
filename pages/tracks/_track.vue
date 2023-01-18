@@ -31,7 +31,7 @@
       </v-row>
       <v-row>
         <v-col v-for="(event, i) in events" :key="i" cols="12">
-          <event-card :event="event"/>
+          <event-card :event="event" :show-champ="true"/>
         </v-col>
       </v-row>
     </div>

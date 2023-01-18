@@ -11,7 +11,7 @@
           </nuxt-link>
         </v-card-title>
         <v-card-subtitle class="pb-1">
-          @ {{event.track.name}}
+          {{subtitle}}
         </v-card-subtitle>
         <v-card-text class="pb-1">
           {{periodLabel}}
@@ -28,7 +28,7 @@
 <script>
 export default {
   name: "EventCard",
-  props: ["event"],
+  props: ["event", "showTrack", "showChamp"],
   computed : {
     periodLabel(){
       const start = new Date(this.event.startDate)
@@ -39,6 +39,11 @@ export default {
     },
     admin () {
       return this.$store.getters['authentication/isAdmin']
+    },
+    subtitle(){
+      const track = this.showTrack ? `@ ${this.event.track.name}` : ""
+      const champ = this.showChamp ? this.event.championship.prettyName : ""
+      return `${champ} ${track}`
     },
   }
 }

@@ -7,32 +7,34 @@
           <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col cols="12" md="12" >
-          <v-img :src="championship.image" class="rounded" alt="championship image" :height="imageHeight">
-            <div class="d-flex justify-center" style="height: 100%">
-              <v-avatar size="100" class="pa-2 mt-auto mb-5 white-background">
-                <v-img :src="championship.logo" contain/>
-              </v-avatar>
-            </div>
-          </v-img>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <h1>{{`${name} ${year}`}}</h1>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-btn v-if="championship && admin" color="orange" block :to="`/admin/edit/championship/${championship.id}`">Edit</v-btn>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col v-for="(event, i) in events" :key="i" cols="12">
-          <event-card :event="event"/>
-        </v-col>
-      </v-row>
+      <div v-if="championship">
+        <v-row>
+          <v-col cols="12" md="12" >
+            <v-img :src="championship.image" class="rounded" alt="championship image" :height="imageHeight">
+              <div class="d-flex justify-center" style="height: 100%">
+                <v-avatar size="100" class="pa-2 mt-auto mb-5 white-background">
+                  <v-img :src="championship.logo" contain/>
+                </v-avatar>
+              </div>
+            </v-img>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <h1>{{`${name} ${year}`}}</h1>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-btn v-if="admin" color="orange" block :to="`/admin/edit/championship/${championship.id}`">Edit</v-btn>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col v-for="(event, i) in events" :key="i" cols="12">
+            <event-card :event="event" :show-track="true"/>
+          </v-col>
+        </v-row>
+      </div>
     </v-col>
   </v-row>
 </template>
