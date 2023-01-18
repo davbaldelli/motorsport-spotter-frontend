@@ -8,7 +8,7 @@
       </v-col>
     </v-row>
     <v-row v-if="event">
-      <v-col  v-for="(session, i) in event.sessions" :key="i" cols="12">
+      <v-col  v-for="(session, i) in sessions" :key="i" cols="12">
         <session-card :session="session"/>
       </v-col>
     </v-row>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import {sessionSorters} from "@/_helpers/session-sorters";
+
 export default {
   name: "EventDetail",
   asyncData({params}){
@@ -32,6 +34,9 @@ export default {
     }
   },
   computed : {
+    sessions(){
+      return [...this.event.sessions].sort(sessionSorters.sortByDateTime)
+    },
     event() {
       return this.$store.getters["events/eventByUnique"](this.name, this.championship, this.year)
     }

@@ -15,11 +15,7 @@
 <script>
 export default {
   name: "AddEvent",
-  head(){
-    return{
-      title : "Add Event"
-    }
-  },
+  middleware: 'admin',
   data() {
     return {
       showMsg: false,
@@ -32,6 +28,11 @@ export default {
         startDate : null,
         endDate : null,
       }
+    }
+  },
+  head(){
+    return{
+      title : "Add Event"
     }
   },
   methods : {

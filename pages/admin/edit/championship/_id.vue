@@ -15,6 +15,7 @@
 <script>
 export default {
   name: "EditChampionship",
+  middleware: 'admin',
   asyncData({params}){
     return {
       id : params.id

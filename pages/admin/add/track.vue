@@ -15,11 +15,7 @@
 <script>
 export default {
   name: "AddTrack",
-  head(){
-    return{
-      title : "Add Track"
-    }
-  },
+  middleware: 'admin',
   data() {
     return {
       showMsg: false,
@@ -31,6 +27,11 @@ export default {
         logo : "",
         nationCode : "",
       }
+    }
+  },
+  head(){
+    return{
+      title : "Add Track"
     }
   },
   methods : {

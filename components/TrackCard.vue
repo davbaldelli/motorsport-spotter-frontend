@@ -22,9 +22,9 @@ export default {
   name: "TrackCard",
   props: ['track'],
   computed : {
-    admin(){
-      return true
-    }
+    admin () {
+      return this.$store.getters['authentication/isAdmin']
+    },
   }
 }
 </script>

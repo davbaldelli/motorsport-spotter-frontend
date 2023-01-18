@@ -15,6 +15,7 @@
 <script>
 export default {
   name: "TrackEdit",
+  middleware: 'admin',
   asyncData({params}){
     return {
       id : params.id

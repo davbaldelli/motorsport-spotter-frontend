@@ -42,8 +42,8 @@ export default {
     events(){
       return this.$store.getters["events/championshipEvents"](this.name, this.year)
     },
-    admin(){
-      return true
+    admin () {
+      return this.$store.getters['authentication/isAdmin']
     },
   },
   mounted() {

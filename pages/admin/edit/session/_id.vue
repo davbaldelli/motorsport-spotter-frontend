@@ -15,6 +15,7 @@
 <script>
 export default {
   name: "EditSession",
+  middleware: 'admin',
   asyncData({params}){
     return {
       id : params.id

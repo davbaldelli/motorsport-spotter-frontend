@@ -15,6 +15,7 @@
 <script>
 export default {
   name: "EditEvent",
+  middleware: 'admin',
   asyncData({params}){
     return {
       id : params.id

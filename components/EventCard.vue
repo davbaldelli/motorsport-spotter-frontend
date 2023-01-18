@@ -37,8 +37,8 @@ export default {
       const startMonth = start.toLocaleString('default', { month: 'short' });
       return `${start.getDate()}${startMonth !== endMonth ? " "+startMonth : ""}-${end.getDate()} ${endMonth}`
     },
-    admin(){
-      return true
+    admin () {
+      return this.$store.getters['authentication/isAdmin']
     },
   }
 }

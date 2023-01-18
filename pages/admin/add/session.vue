@@ -15,11 +15,7 @@
 <script>
 export default {
   name: "AddSession",
-  head(){
-    return{
-      title : "Add Session"
-    }
-  },
+  middleware: 'admin',
   data() {
     return {
       showMsg: false,
@@ -31,6 +27,11 @@ export default {
         durationMin : null,
         durationLaps : null,
       }
+    }
+  },
+  head(){
+    return{
+      title : "Add Session"
     }
   },
   methods : {

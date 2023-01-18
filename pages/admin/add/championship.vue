@@ -15,11 +15,7 @@
 <script>
 export default {
   name: "AddChampionship",
-  head(){
-    return{
-      title : "Add Championship"
-    }
-  },
+  middleware: 'admin',
   data() {
     return {
       showMsg: false,
@@ -32,6 +28,11 @@ export default {
         year : null,
         liveStream : null,
       }
+    }
+  },
+  head(){
+    return{
+      title : "Add Championship"
     }
   },
  methods : {

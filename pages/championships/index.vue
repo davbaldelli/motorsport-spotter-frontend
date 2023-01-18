@@ -14,14 +14,14 @@
 <script>
 export default {
   name: "ChampionshipsHome",
-  head(){
-    return{
-      title : "Championships"
-    }
-  },
   data(){
     return {
 
+    }
+  },
+  head(){
+    return{
+      title : "Championships"
     }
   },
   computed : {
