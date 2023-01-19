@@ -32,37 +32,18 @@
           <v-col cols="0" lg="3" md="2"/>
         </v-row>
       </v-container>
-      <v-app-bar-nav-icon class="d-sm-none"  aria-label="navigation drawer button" @click.stop="drawer = !drawer" />
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" disable-resize-watcher app>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Navigation
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider></v-divider>
-      <v-list nav dense>
-        <v-list-item-group color="primary">
-          <v-list-item v-for="(item, i) in menuItems" :key="i" link :to="item.to">
-            <v-icon>{{item.icon}}</v-icon>
-            <v-list-item-content>
-              <v-list-item-title >{{item.title}}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-      <v-divider></v-divider>
-      <v-list-item v-if="admin" @click="logOut">
-        Logout
-      </v-list-item>
-    </v-navigation-drawer>
     <v-main>
       <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>
+    <v-bottom-navigation :value="value" class="d-sm-none" color="primary" app fixed>
+      <v-btn v-for="(item, i) in menuItems" :key="i" :to="item.to">
+        <span>{{ item.title }}</span>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
   </v-app>
 </template>
 
