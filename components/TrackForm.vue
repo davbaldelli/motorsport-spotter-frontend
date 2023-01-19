@@ -6,7 +6,10 @@
         <v-form ref="form" v-model="valid" @submit.prevent="onSubmit">
           <v-row>
             <v-col>
-              <v-text-field v-model="form.name" :rules="rules.required" label="Name" required/>
+              <v-text-field v-model="form.name" :rules="rules.required" label="Official Name" required/>
+            </v-col>
+            <v-col>
+              <v-text-field v-model="form.commonName" :rules="rules.required" label="Common Name" required/>
             </v-col>
           </v-row>
           <v-row>
