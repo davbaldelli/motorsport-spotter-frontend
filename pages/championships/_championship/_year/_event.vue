@@ -23,8 +23,16 @@
           <v-avatar size="50" class="pa-2 mt-auto white-background">
             <v-img :src="event.championship.logo" contain/>
           </v-avatar>
-          <nuxt-link :to="`/championships/${event.championship.name}/${event.championship.year}/`">
-            <span class="px-3">{{event.championship.prettyName}}</span>
+          <nuxt-link class="px-3" :to="`/championships/${event.championship.name}/${event.championship.year}`">
+            <span>{{event.championship.name}}</span>
+          </nuxt-link>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="align-center">
+          <v-icon size="50">mdi-map-marker</v-icon>
+          <nuxt-link class="px-3" :to="`/tracks/${event.track.name}`">
+            <span>{{event.track.name}}</span>
           </nuxt-link>
         </v-col>
       </v-row>

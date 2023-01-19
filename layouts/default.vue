@@ -39,7 +39,7 @@
       </v-container>
     </v-main>
     <v-bottom-navigation :value="value" class="d-sm-none" app>
-      <v-btn v-for="(item, i) in menuItems" :key="i" :to="item.to" color="primary" text style="height: 100%">
+      <v-btn v-for="(item, i) in menuItems" :key="i" :to="item.to" text style="height: 100%">
         {{ item.title }}<v-icon>{{ item.icon }}</v-icon>
       </v-btn>
     </v-bottom-navigation>

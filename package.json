@@ -15,6 +15,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
+    "@pderas/vue2-geocoder": "^1.1.0",
     "core-js": "^3.25.3",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
