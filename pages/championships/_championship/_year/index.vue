@@ -4,7 +4,7 @@
     <v-col cols="12" xl="6" lg="8" md="10">
       <v-row>
         <v-col>
-          <v-breadcrumbs :items="breadCrumbs" class="px-0"></v-breadcrumbs>
+          <v-breadcrumbs :items="breadCrumbs" class="px-0 d-none d-md-flex"></v-breadcrumbs>
         </v-col>
       </v-row>
       <div v-if="championship">

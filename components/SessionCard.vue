@@ -6,7 +6,7 @@
         {{session.name}}
       </v-card-title>
       <v-card-subtitle>
-        {{`${session.date} ${session.time}`}}
+        {{datetime.format('dddd, MMMM DD, LT z')}}
       </v-card-subtitle>
     </v-col>
     <v-col cols="3" class="d-flex flex-column justify-center">
@@ -20,12 +20,22 @@
 </template>
 
 <script>
+
+
+import moment from "moment-timezone";
+
 export default {
   name: "SessionCard",
   props : ['session'],
   computed : {
     admin () {
       return this.$store.getters['authentication/isAdmin']
+    },
+    datetime(){
+      return moment.tz(moment.tz(`${this.session.date} ${this.session.time}`,"Europe/Rome"), this.timeZone)
+    },
+    timeZone(){
+      return  Intl.DateTimeFormat().resolvedOptions().timeZone;
     },
   }
 }
