@@ -4,7 +4,7 @@
       <v-col cols="12" xl="6" lg="8" md="10">
         <v-row>
           <v-col>
-            <h1>This Week Events</h1>
+            <h1>Incoming Events</h1>
           </v-col>
         </v-row>
         <v-row>
