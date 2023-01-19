@@ -6,12 +6,12 @@
       </v-col>
       <v-col cols="9" class="d-flex flex-column">
         <v-card-text class="pt-2 pb-0">
-          <span class="subtitle-2">{{periodLabel}}</span>
+          <span class="body-2">{{periodLabel}}</span>
         </v-card-text>
         <v-card-title class="pt-0 pb-2">
           <h3 class="text-h6 text-md-h5 single-line">{{ event.name }}</h3>
         </v-card-title>
-        <v-card-subtitle class="pb-2 pt-3">
+        <v-card-subtitle class="pb-2 pt-2">
           <span class="body-2">{{subtitle}}</span>
         </v-card-subtitle>
         <v-card-actions class="mt-auto px-4 pb-4 pt-0 d-none d-md-flex">
