@@ -6,7 +6,7 @@
         {{session.name}}
       </v-card-title>
       <v-card-subtitle>
-        {{datetime.format('dddd, MMMM DD, LT z')}}
+        {{datetime.format('dddd, MMMM DD, HH:mm  z')}}
       </v-card-subtitle>
     </v-col>
     <v-col cols="3" class="d-flex flex-column justify-center">
@@ -32,7 +32,7 @@ export default {
       return this.$store.getters['authentication/isAdmin']
     },
     datetime(){
-      return moment.tz(moment.tz(`${this.session.date} ${this.session.time}`,"Europe/Rome"), this.timeZone)
+      return moment.tz(`${this.session.date} ${this.session.time}`,this.session.timezone).clone().tz(this.timeZone)
     },
     timeZone(){
       return  Intl.DateTimeFormat().resolvedOptions().timeZone;

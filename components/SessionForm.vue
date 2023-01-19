@@ -11,11 +11,6 @@
           </v-row>
           <v-row>
             <v-col>
-              <v-autocomplete v-model="form.eventId" :items="events" :rules="rules.required"
-                              :item-text="e => `${e.championship.name} ${e.championship.year} - ${e.name}`" item-value="id"
-                              label="Event" required/>
-            </v-col>
-            <v-col>
               <v-menu
                 ref="menu"
                 v-model="calendar1"
@@ -59,8 +54,16 @@
                 </v-date-picker>
               </v-menu>
             </v-col>
+            <v-col cols="4">
+              <v-autocomplete v-model="form.timezone" :items="timezones" :rules="rules.required" label="Timezone" required/>
+            </v-col>
           </v-row>
           <v-row>
+            <v-col>
+              <v-autocomplete v-model="form.eventId" :items="events" :rules="rules.required"
+                              :item-text="e => `${e.championship.name} ${e.championship.year} - ${e.name}`" item-value="id"
+                              label="Event" required/>
+            </v-col>
             <v-col>
               <v-text-field v-model.number="form.durationMin" label="Duration Minutes"/>
             </v-col>
@@ -98,8 +101,10 @@ export default {
   emits : ['submit'],
   data(){
     return {
+      timezone : null,
       calendar1 : false,
       calendar2 : false,
+      timezones : Intl.supportedValuesOf('timeZone'),
       form : this.initialValue,
       time : null,
       valid : true,
