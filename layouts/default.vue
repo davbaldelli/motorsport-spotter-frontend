@@ -5,14 +5,14 @@
         <v-row no-gutters>
           <v-col cols="0" xl="3" lg="2" md="1" class="d-none d-md-block"/>
           <v-col class="d-inline-flex" cols="12" xl="6" lg="8" md="10">
-            <v-btn v-for="(item, i) in menuItems" class="d-none d-sm-flex pl-0 pr-4" plain :to="item.to" :key="i">
+            <v-btn v-for="(item, i) in menuItems" :key="i" class="d-none d-sm-flex pl-0 pr-4" plain :to="item.to">
               <v-icon>{{item.icon}}</v-icon>
               {{item.title}}
             </v-btn>
             <v-spacer></v-spacer>
             <v-menu v-if="admin" offset-y>
               <template #activator="{ on, attrs }">
-                <v-btn v-if="admin" class="d-none d-sm-flex" plain v-on="on" v-bind="attrs">
+                <v-btn v-if="admin" class="d-none d-sm-flex" plain v-bind="attrs" v-on="on">
                   <v-icon>mdi-user</v-icon>
                   Admin
                 </v-btn>
@@ -38,10 +38,9 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-bottom-navigation :value="value" class="d-sm-none" color="primary" app>
-      <v-btn v-for="(item, i) in menuItems" :key="i" :to="item.to">
-        <span>{{ item.title }}</span>
-        <v-icon>{{ item.icon }}</v-icon>
+    <v-bottom-navigation :value="value" class="d-sm-none" app>
+      <v-btn v-for="(item, i) in menuItems" :key="i" :to="item.to" color="primary" text style="height: 100%">
+        {{ item.title }}<v-icon>{{ item.icon }}</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
