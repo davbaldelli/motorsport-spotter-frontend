@@ -38,7 +38,7 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-bottom-navigation :value="value" class="d-sm-none" color="primary" app fixed>
+    <v-bottom-navigation :value="value" class="d-sm-none" color="primary" app>
       <v-btn v-for="(item, i) in menuItems" :key="i" :to="item.to">
         <span>{{ item.title }}</span>
         <v-icon>{{ item.icon }}</v-icon>
