@@ -126,12 +126,8 @@ function isInThisWeek(event){
   const nextWeek = moment().add(7, 'days')
   const startDate = moment(event.startDate)
   const endDate = moment(event.endDate)
-  return startDate.isBetween(today, nextWeek,"days", "[]") || endDate.isBetween(today, nextWeek, "days", "[]")
+  return startDate.isBetween(today, nextWeek,"days", "[]")
+    || endDate.isBetween(today, nextWeek, "days", "[]")
+    || (today.isSameOrAfter(startDate) && nextWeek.isSameOrBefore(endDate))
 }
 
-// eslint-disable-next-line no-extend-native
-Date.prototype.addDays = function(days) {
-  const date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
-}
