@@ -68,6 +68,11 @@
         </v-row>
         <v-row>
           <v-col>
+            <v-textarea v-model="form.description" label="Description"/>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
             <v-btn block color="primary" type="submit">Insert</v-btn>
           </v-col>
         </v-row>
