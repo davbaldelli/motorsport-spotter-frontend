@@ -57,6 +57,7 @@
 </template>
 
 <script>
+
 export default {
   name: "ChampionshipForm",
   props : ['initialValue'],
@@ -67,7 +68,7 @@ export default {
       valid : true,
       confirm : false,
       rules : {
-        required : [v=> !!v || 'this entry is required']
+        required : [v=> !!v || 'this entry is required'],
       }
     }
   },

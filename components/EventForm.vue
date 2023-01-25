@@ -95,6 +95,9 @@
 </template>
 
 <script>
+
+import moment from "moment";
+
 export default {
   name: "EventForm",
   props : ['initialValue'],
@@ -107,7 +110,7 @@ export default {
       valid : true,
       confirm : false,
       rules : {
-        required : [v=> !!v || 'this entry is required']
+        required : [v=> !!v || 'this entry is required'],
       }
     }
   },
@@ -131,7 +134,12 @@ export default {
     onSubmit () {
       this.$refs.form.validate()
       if (this.valid) {
-        this.confirm = true
+        if(moment(this.form.endDate).isSameOrAfter(this.form.startDate)) {
+          this.confirm = true
+        }
+        else {
+          window.alert("End date can't be lesser than start date")
+        }
       }
     },
   }
