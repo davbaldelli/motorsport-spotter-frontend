@@ -88,7 +88,7 @@ export default {
   },
   computed : {
     sessions(){
-      return [...this.event.sessions].sort(sessionSorters.sortByDateTime)
+      return this.$store.getters['sessions/eventSessions'](this.event.id).sort(sessionSorters.sortByDateTime)
     },
     event() {
       return this.$store.getters["events/eventByUnique"](this.name, this.championship, this.year)
@@ -105,6 +105,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch('sessions/fetchSessions')
     this.$store.dispatch('events/fetchAllEvents')
   }
 }

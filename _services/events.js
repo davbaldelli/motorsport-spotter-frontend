@@ -7,6 +7,7 @@ export const eventsService = {
   getIncoming,
   pushEvent,
   updateEvent,
+  deleteEvent
 }
 
 function getAll(){
@@ -37,4 +38,11 @@ function updateEvent(event){
     .catch(error => {
       return Promise.reject(error.response)
     })
+}
+
+function deleteEvent(id){
+  return axios
+    .post(`${API_URL}/events/delete`, {id}, { headers: authHeader()})
+    .then(res => res.data)
+    .catch(error => Promise.reject(error.response))
 }

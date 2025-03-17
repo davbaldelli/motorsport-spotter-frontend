@@ -13,6 +13,7 @@
       <v-card-actions v-if="admin" class="px-3">
         <v-spacer/>
         <v-btn  :to="`/admin/edit/session/${session.id}`" color="orange">Edit</v-btn>
+        <v-btn  @click="deleteSession" color="red">Delete</v-btn>
       </v-card-actions>
     </v-col>
   </v-row>
@@ -37,6 +38,11 @@ export default {
     timeZone(){
       return  Intl.DateTimeFormat().resolvedOptions().timeZone;
     },
+  },
+  methods :{
+    deleteSession(){
+      this.$store.dispatch('sessions/deleteSession',this.session.id)
+    }
   }
 }
 </script>

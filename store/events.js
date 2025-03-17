@@ -46,6 +46,17 @@ export const mutations = {
   eventPushError(state){
     delete state.events.pushing
     state.events.error = state
+  },
+  deletingEvent (state){
+    delete state.events.error
+    state.events.deleting = true
+  },
+  eventDeleted (state){
+    delete state.events.deleting
+  },
+  eventDeletingError(state){
+    delete state.events.deleting
+    state.events.error = state
   }
 }
 
@@ -112,6 +123,22 @@ export const actions = {
         })
     })
   },
+  deleteEvent({dispatch, commit}, id) {
+    commit('deletingEvent')
+    return new Promise((resolve, reject) => {
+      eventsService.deleteEvent(id)
+        .then(() => {
+          commit('eventDeleted')
+          dispatch('fetchAllEvents')
+          dispatch('alert/success', 'Event deleted', {root: true})
+          resolve()
+        })
+        .catch(error => {
+          commit('eventDeletingError', error)
+          dispatch('alert/error', error, {root: true})
+        })
+    })
+  }
 }
 
 function isIncoming(event){

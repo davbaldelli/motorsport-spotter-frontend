@@ -9,7 +9,9 @@ export const state = () => initialState
 export const getters = {
   loadingSessions : state => state.sessions.fetching || state.sessions.notInitialized,
   sessions : state => state.sessions.items,
-  session : state => (id) => state.sessions.items.find(session => session.id === parseInt(id))
+  session : state => (id) => state.sessions.items.find(session => session.id === parseInt(id)),
+  eventSessions : state => (eventId) => {
+    return state.sessions.items.filter(session => session.eventId === eventId)}
 }
 
 export const mutations = {
@@ -38,7 +40,19 @@ export const mutations = {
   sessionPushError(state){
     delete state.sessions.pushing
     state.sessions.error = state
+  },
+  deletingSession (state){
+    delete state.sessions.error
+    state.sessions.deleting = true
+  },
+  sessionDeleted (state){
+    delete state.sessions.deleting
+  },
+  sessionDeletingError(state){
+    delete state.sessions.deleting
+    state.sessions.error = state
   }
+
 }
 
 export const actions = {
@@ -87,6 +101,22 @@ export const actions = {
           commit('sessionPushError', error)
           dispatch('alert/error', error, {root: true})
           reject(error)
+        })
+    })
+  },
+  deleteSession({dispatch, commit}, id) {
+    commit('deletingSession')
+    return new Promise((resolve, reject) => {
+      sessionsService.deleteSession(id)
+        .then(() => {
+          commit('sessionDeleted')
+          dispatch('fetchSessions')
+          dispatch('alert/success', 'Session deleted', {root: true})
+          resolve()
+        })
+        .catch(error => {
+          commit('sessionDeletingError', error)
+          dispatch('alert/error', error, {root: true})
         })
     })
   }

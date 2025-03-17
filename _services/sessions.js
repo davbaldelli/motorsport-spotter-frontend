@@ -5,7 +5,8 @@ import {authHeader} from "@/_services/auth-header";
 export const sessionsService = {
   getAll,
   push,
-  update
+  update,
+  deleteSession
 }
 
 function getAll(){
@@ -26,6 +27,15 @@ function push(event){
 function update(event){
   return axios
     .post(`${API_URL}/sessions/update`, event, { headers: authHeader() })
+    .then(res => res.data)
+    .catch(error => {
+      return Promise.reject(error.response)
+    })
+}
+
+function deleteSession(id){
+  return axios
+    .post(`${API_URL}/sessions/delete`, {id}, { headers: authHeader()})
     .then(res => res.data)
     .catch(error => {
       return Promise.reject(error.response)

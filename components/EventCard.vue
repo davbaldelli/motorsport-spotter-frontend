@@ -1,5 +1,6 @@
 <template>
-  <v-card :to="`/championships/${event.championship.name}/${event.championship.year}/${event.name}`">
+  <v-card>
+    <NuxtLink class="card-link" :to="`/championships/${event.championship.name}/${event.championship.year}/${event.name}`"></NuxtLink>
     <v-row no-gutters>
       <v-col cols="3">
         <v-img :src="event.image" class="rounded" :height="imageHeight"/>
@@ -14,9 +15,10 @@
         <v-card-subtitle class="pb-2 pt-2">
           <span class="body-2">{{subtitle}}</span>
         </v-card-subtitle>
-        <v-card-actions class="mt-auto px-4 pb-4 pt-0 d-none d-md-flex">
+        <v-card-actions class="mt-auto px-4 pb-4 pt-0 d-none d-md-flex z-index-10">
           <v-spacer/>
           <v-btn v-if="admin" :to="`/admin/edit/event/${event.id}`" color="orange">Edit</v-btn>
+          <v-btn v-if="admin" @click="deleteEvent" color="red">Delete</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -53,6 +55,11 @@ export default {
         default : return 120
       }
     },
+  },
+  methods : {
+    deleteEvent(){
+      this.$store.dispatch('events/deleteEvent', this.event.id)
+    }
   }
 }
 </script>
@@ -65,4 +72,13 @@ export default {
   overflow: hidden ;
   text-overflow: ellipsis;
 }
+
+.card-link{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
 </style>
