@@ -39,6 +39,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxt/postcss8',
+    '@nuxtjs/tailwindcss'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

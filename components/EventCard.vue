@@ -18,7 +18,7 @@
         <v-card-actions class="mt-auto px-4 pb-4 pt-0 d-none d-md-flex z-index-10">
           <v-spacer/>
           <v-btn v-if="admin" :to="`/admin/edit/event/${event.id}`" color="orange">Edit</v-btn>
-          <v-btn v-if="admin" @click="deleteEvent" color="red">Delete</v-btn>
+          <v-btn v-if="admin && showDelete" @click="askDeleteEvent" color="red">Delete</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -28,7 +28,7 @@
 <script>
 export default {
   name: "EventCard",
-  props: ["event", "showTrack", "showChamp"],
+  props: ["event", "showTrack", "showChamp", 'showDelete'],
   computed : {
     periodLabel(){
       const start = new Date(this.event.startDate)
@@ -57,9 +57,10 @@ export default {
     },
   },
   methods : {
-    deleteEvent(){
-      this.$store.dispatch('events/deleteEvent', this.event.id)
-    }
+    askDeleteEvent(){
+      this.$emit('delete', this.event.id)
+      // this.$store.dispatch('events/deleteEvent', this.event.id)
+    },
   }
 }
 </script>

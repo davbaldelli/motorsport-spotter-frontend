@@ -28,6 +28,7 @@ import moment from "moment-timezone";
 export default {
   name: "SessionCard",
   props : ['session'],
+  emits : ['askDelete'],
   computed : {
     admin () {
       return this.$store.getters['authentication/isAdmin']
@@ -41,7 +42,7 @@ export default {
   },
   methods :{
     deleteSession(){
-      this.$store.dispatch('sessions/deleteSession',this.session.id)
+      this.$emit('askDelete', this.session.id)
     }
   }
 }
