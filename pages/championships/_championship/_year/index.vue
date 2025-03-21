@@ -46,6 +46,16 @@
                 >Edit</v-btn
               >
             </v-col>
+            <v-col>
+              <v-btn
+                v-if="admin"
+                color="red"
+                block
+                :disabled="championship.archived"
+                @click="askArchiveConfirmation(championship.id)"
+              >{{championship.archived ? "Archived" : "Archive"}}</v-btn
+              >
+            </v-col>
           </v-row>
           <v-row>
             <v-col v-for="(event, i) in events" :key="i" cols="12">
@@ -142,12 +152,20 @@ export default {
       this.confirmDialogAction = () => this.confirmEventDelete(id)
       this.$refs.confirmDeleteModal.openDialog()
     },
+    askArchiveConfirmation(id) {
+      this.confirmDialogAction = () => this.confirmArchive(id)
+      this.$refs.confirmDeleteModal.openDialog()
+    },
     closeConfirmDialog() {
       this.$refs.confirmDeleteModal.closeDialog()
       this.confirmDialogAction = () => {}
     },
     confirmEventDelete(id) {
       this.$store.dispatch('events/deleteEvent', id)
+      this.$refs.confirmDeleteModal.closeDialog()
+    },
+    confirmArchive(id) {
+      this.$store.dispatch('championships/archiveChampionship', id)
       this.$refs.confirmDeleteModal.closeDialog()
     }
   },

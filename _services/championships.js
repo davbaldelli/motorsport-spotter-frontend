@@ -6,6 +6,7 @@ export const championshipsService = {
   getAll,
   pushChampionship,
   updateChampionship,
+  archiveChampionship
 }
 
 function getAll(){
@@ -28,6 +29,16 @@ function updateChampionship(championship){
     .post(`${API_URL}/championships/update`, championship, { headers: authHeader() })
     .then(res => res.data)
     .catch(error => {
+      return Promise.reject(error.response)
+    })
+}
+
+function archiveChampionship(id){
+  return axios
+    .post(`${API_URL}/championships/archive`, {id}, { headers: authHeader() })
+    .then(res => res.data)
+    .catch(error => {
+      window.console.log(error.response)
       return Promise.reject(error.response)
     })
 }

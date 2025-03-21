@@ -42,6 +42,17 @@ export const mutations = {
   championshipPushError(state){
     delete state.championships.pushing
     state.championships.error = state
+  },
+  archivingChampionship (state){
+    delete state.championships.error
+    state.championships.archiving = true
+  },
+  championshipArchived (state){
+    delete state.championships.archiving
+  },
+  championshipArchivingError(state){
+    delete state.championships.archiving
+    state.championships.error = state
   }
 }
 
@@ -90,6 +101,23 @@ export const actions = {
         })
         .catch(error => {
           commit('championshipPushError', error)
+          dispatch('alert/error', error, {root:true})
+          reject(error)
+        })
+    })
+  },
+  archiveChampionship({dispatch, commit}, id) {
+    commit('archivingChampionship')
+    return new Promise((resolve, reject) => {
+      championshipsService.archiveChampionship(id)
+      .then(championship => {
+          commit('championshipArchived')
+          dispatch('fetchAllChampionships')
+          dispatch('alert/success', championship, { root: true })
+          resolve(championship)
+        })
+        .catch(error => {
+          commit('championshipArchivingError', error)
           dispatch('alert/error', error, {root:true})
           reject(error)
         })

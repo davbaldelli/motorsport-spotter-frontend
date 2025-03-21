@@ -1,5 +1,6 @@
 <template>
-  <v-card>
+  
+  <v-card :class="event.championship.archived ? 'grayscale' : ''">
     <NuxtLink class="card-link" :to="`/championships/${event.championship.name}/${event.championship.year}/${event.name}`"></NuxtLink>
     <v-row no-gutters>
       <v-col cols="3">
