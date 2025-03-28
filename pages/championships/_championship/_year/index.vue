@@ -118,10 +118,7 @@ export default {
       )
     },
     events() {
-      return this.$store.getters['events/championshipEvents'](
-        this.name,
-        this.year
-      )
+      return this.$store.getters['events/championshipEvents'](this.championship.id)
     },
     admin() {
       return this.$store.getters['authentication/isAdmin']

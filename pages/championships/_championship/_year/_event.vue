@@ -30,21 +30,21 @@
           <v-row>
             <v-col class="align-center">
               <v-avatar size="50" class="pa-2 mt-auto white-background">
-                <v-img :src="event.championship.logo" contain />
+                <v-img :src="championship.logo" contain />
               </v-avatar>
               <nuxt-link
                 class="px-3"
-                :to="`/championships/${event.championship.name}/${event.championship.year}`"
+                :to="`/championships/${championship.name}/${championship.year}`"
               >
-                <span>{{ event.championship.name }}</span>
+                <span>{{ championship.name }}</span>
               </nuxt-link>
             </v-col>
           </v-row>
           <v-row>
             <v-col class="align-center">
               <v-icon size="50">mdi-map-marker</v-icon>
-              <nuxt-link class="px-3" :to="`/tracks/${event.track.name}`">
-                <span>{{ event.track.name }}</span>
+              <nuxt-link class="px-3" :to="`/tracks/${track.name}`">
+                <span>{{ track.name }}</span>
               </nuxt-link>
             </v-col>
           </v-row>
@@ -78,7 +78,7 @@ export default {
   name: 'EventDetail',
   asyncData({ params }) {
     return {
-      championship: params.championship,
+      championshipParam: params.championship,
       year: params.year,
       name: params.event,
       breadCrumbs: [
@@ -119,12 +119,19 @@ export default {
         sessionSorters.sortByDateTime
       )
     },
+    track(){
+      return this.$store.getters['tracks/track'](this.event.trackId)
+    },
+    championship() {
+      return this.$store.getters['championships/championshipByUnique'](this.championshipParam, this.year)
+    },
     event() {
-      return this.$store.getters['events/eventByUnique'](
-        this.name,
-        this.championship,
-        this.year
-      )
+      if(this.championship) {
+        return this.$store.getters['events/eventByUnique'](
+          this.name, this.championship.id,
+        )
+      }
+      else return null
     },
     imageHeight() {
       switch (this.$vuetify.breakpoint.name) {
@@ -144,6 +151,8 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch('championships/fetchAllChampionships')
+    this.$store.dispatch('tracks/fetchAllTracks')
     this.$store.dispatch('sessions/fetchSessions')
     this.$store.dispatch('events/fetchAllEvents')
   },

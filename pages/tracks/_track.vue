@@ -66,7 +66,7 @@ export default {
       return this.$store.getters["tracks/trackByUnique"](this.name)
     },
     events(){
-      return this.$store.getters["events/trackEvents"](this.name)
+      return this.$store.getters["events/trackEvents"](this.track.id)
     },
     admin () {
       return this.$store.getters['authentication/isAdmin']

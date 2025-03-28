@@ -34,6 +34,10 @@ export default {
   },
   methods : {
     initialize(){
+      this.$store.dispatch('championships/fetchAllChampionships')
+      this.$store.dispatch('tracks/fetchAllTracks')
+      this.$store.dispatch('sessions/fetchSessions')
+      this.$store.dispatch('nations/fetchAllNations')
       this.$store.dispatch('events/fetchAllEvents')
     }
   }

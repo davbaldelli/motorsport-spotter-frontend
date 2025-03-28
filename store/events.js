@@ -13,11 +13,11 @@ export const getters = {
   incomingEvents : state => state.events.items.filter(isIncoming),
   thisWeekEvents : state => state.events.items.filter(isInThisWeek),
   event :state => (id) => state.events.items.find(event => event.id === parseInt(id)),
-  eventByUnique : state => (name,championship,year) => state.events.items.find(e =>
-    e.name === name && e.championship.name === championship && e.championship.year === parseInt(year)),
-  championshipEvents : state => (championship, year) => state.events.items.filter(event =>
-    event.championship.name === championship && event.championship.year === parseInt(year)),
-  trackEvents : state => (name) => state.events.items.filter(event => event.track.name === name)
+  eventByUnique : state => (name, championshipId) => state.events.items.find(e =>
+    e.name === name && e.championshipId === championshipId),
+  championshipEvents : state => (championshipId) => state.events.items.filter(event =>
+    event.championshipId === championshipId),
+  trackEvents : state => (trackId) => state.events.items.filter(event => event.trackId === trackId)
 }
 
 export const mutations = {
