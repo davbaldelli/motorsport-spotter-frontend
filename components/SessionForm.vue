@@ -61,7 +61,7 @@
           <v-row>
             <v-col>
               <v-autocomplete v-model="form.eventId" :items="events" :rules="rules.required"
-                              :item-text="e => `${e.championship.name} ${e.championship.year} - ${e.name}`" item-value="id"
+                              :item-text="e => `${championship(e.championshipId).prettyName} ${championship(e.championshipId).year} - ${e.name}`" item-value="id"
                               label="Event" required/>
             </v-col>
             <v-col>
@@ -116,11 +116,12 @@ export default {
   },
   computed : {
     events(){
-      return this.$store.getters["events/events"]
+      return this.$store.getters["events/events"].filter(e => !e.archived)
     }
   },
   mounted() {
     this.$store.dispatch('events/fetchAllEvents')
+    this.$store.dispatch('championships/fetchAllChampionships')
   },
   methods : {
     confirmed () {
@@ -133,6 +134,9 @@ export default {
         this.confirm = true
       }
     },
+    championship(id){
+      return this.$store.getters["championships/championship"](id)
+    }
   }
 }
 </script>
