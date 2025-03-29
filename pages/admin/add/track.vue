@@ -22,7 +22,7 @@ export default {
       message: '',
       initialValue : {
         name : "",
-        locationName : "",
+        address : "",
         image : "",
         logo : "",
         nationCode : "",

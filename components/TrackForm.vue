@@ -14,7 +14,7 @@
           </v-row>
           <v-row>
             <v-col>
-              <v-text-field v-model="form.locationName" :rules="rules.required" label="Location" required/>
+              <v-text-field v-model="form.address" :rules="rules.required" label="Address" required/>
             </v-col>
             <v-col  v-if="existingNation">
               <v-autocomplete v-model="form.nation" :items="nations" :rules="rules.required" item-text="name"
