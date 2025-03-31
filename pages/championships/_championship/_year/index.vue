@@ -49,11 +49,10 @@
             <v-col>
               <v-btn
                 v-if="admin"
-                color="red"
+                :color="championship.archived ? 'yellow' : 'red'"
                 block
-                :disabled="championship.archived"
-                @click="askArchiveConfirmation(championship.id)"
-              >{{championship.archived ? "Archived" : "Archive"}}</v-btn
+                @click="archiveButtonClick"
+              >{{championship.archived ? "Restore" : "Archive"}}</v-btn
               >
             </v-col>
           </v-row>
@@ -78,6 +77,8 @@
 </template>
 
 <script>
+import championship from '@/pages/admin/add/championship.vue'
+
 export default {
   name: 'ChampionshipPage',
   asyncData({ params }) {
@@ -164,6 +165,16 @@ export default {
     confirmArchive(id) {
       this.$store.dispatch('championships/archiveChampionship', id)
       this.$refs.confirmDeleteModal.closeDialog()
+    },
+    restoreChampionship(id){
+      this.$store.dispatch('championships/restoreChampionship', id)
+    },
+    archiveButtonClick(){
+      if(this.championship.archived){
+        this.restoreChampionship(this.championship.id)
+      } else {
+        this.askArchiveConfirmation(this.championship.id)
+      }
     }
   },
 }

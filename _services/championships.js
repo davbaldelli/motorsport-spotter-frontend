@@ -6,7 +6,8 @@ export const championshipsService = {
   getAll,
   pushChampionship,
   updateChampionship,
-  archiveChampionship
+  archiveChampionship,
+  restoreChampionship
 }
 
 function getAll(){
@@ -36,6 +37,16 @@ function updateChampionship(championship){
 function archiveChampionship(id){
   return axios
     .post(`${API_URL}/championships/archive`, {id}, { headers: authHeader() })
+    .then(res => res.data)
+    .catch(error => {
+      window.console.log(error.response)
+      return Promise.reject(error.response)
+    })
+}
+
+function restoreChampionship(id){
+  return axios
+    .post(`${API_URL}/championships/restore`, {id}, { headers: authHeader() })
     .then(res => res.data)
     .catch(error => {
       window.console.log(error.response)

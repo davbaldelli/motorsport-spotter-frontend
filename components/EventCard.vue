@@ -59,9 +59,12 @@ export default {
       return this.$store.getters["tracks/track"](this.event.trackId)
     },
     subtitle(){
-      const track = this.showTrack ? `@ ${this.track.commonName}` : ""
-      const champ = this.showChamp ? this.championship.prettyName : ""
-      return `${champ} ${track}`
+      if(this.track && this.championship) {
+        const track = this.showTrack ? `@ ${this.track.commonName}` : ""
+        const champ = this.showChamp ? this.championship.prettyName : ""
+        return `${champ} ${track}`
+      }
+      return null
     },
     imageHeight () {
       switch (this.$vuetify.breakpoint.name) {
